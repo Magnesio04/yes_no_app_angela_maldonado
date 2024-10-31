@@ -36,6 +36,9 @@ class MyMessageBubble extends StatelessWidget {
         // Separación de mensajes
         const SizedBox(height: 10,)
 
+        //Métodos de http:
+// Metodo get: obtener algo del servidor (para que el servidor diga algo)
+// Metodo post: envio algo a un sistema para que haga algo
       ],
     );
   }

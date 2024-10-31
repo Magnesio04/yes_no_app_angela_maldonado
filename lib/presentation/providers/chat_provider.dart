@@ -17,7 +17,7 @@ Future<void> sendMessage(String text) async {
   // El mensaje que yo voy a escribir, siempre va a ser "me" pq yo lo envío
   final newMessage =Message(text: 'text', fromWho: FromWho.me);
 
-  // Agrega un nuemo mensaje a la lista
+  // Agrega un nuevo mensaje a la lista
   messageList.add(newMessage);
 
   // Notifica si algo de provier cambió para que se guarde el estado

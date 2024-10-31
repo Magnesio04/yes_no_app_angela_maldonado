@@ -41,7 +41,7 @@ class _ChatView extends StatelessWidget {
             Expanded(
               // ListView dice cuantos elementos tengo y puede cambiar, por eso no es const
               child: ListView.builder(
-                itemCount: 100,
+                itemCount: 10,
                 // Como va a construir cada elemento
                 itemBuilder: (context, index) {
                   // Indica cual es el elemento que está rendirizando en este momento

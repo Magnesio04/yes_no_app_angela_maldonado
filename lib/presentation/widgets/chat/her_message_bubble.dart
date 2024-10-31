@@ -29,7 +29,8 @@ class HerMessageBubble extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
 
             // Texto de los mensajes
-            child: Text('Hola Angela',style: TextStyle(color: Colors.black),),
+            child: Text('Hola Angela',
+            style: TextStyle(color: Colors.black),),
           ),
         ),
 
@@ -45,7 +46,7 @@ class HerMessageBubble extends StatelessWidget {
   }
 }
 
-//stles para widgets:
+// stles para widgets:
 class _ImageBubble extends StatelessWidget {
   
 
@@ -58,9 +59,8 @@ class _ImageBubble extends StatelessWidget {
 
       // Agregar borde a la imagen
       borderRadius: BorderRadius.circular(20),
-      child: Image.network(
-        'https://yesno.wtf/assets/no/20-56c4b19517aa69c8f7081939198341a.gif',
-        width: size.width * 0.7,
+      child: Image.network('https://media.tenor.com/x6nwT34pHxAAAAAM/taylor-swift.gif',
+        width: size.width * 0.5,
         height: 150,
         fit: BoxFit.cover,
         loadingBuilder: (context, child, loadingProgress) {
@@ -70,10 +70,10 @@ class _ImageBubble extends StatelessWidget {
             width: size.width * 0.7,
             height: 150,
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-            child: const Text('Tay <3 está mandando un mensaje'),
+            child: const Text('Tay <3 está mandando un mensaje',
+            style: TextStyle(color: Colors.white),),
           );
-          
         },
-        ));
-  }
-}
+     ));
+   }
+ }
