@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:yes_no_app_angela_maldonado/presentation/widgets/chat/her_message_bubble.dart';
 import 'package:yes_no_app_angela_maldonado/presentation/widgets/chat/my_message_bubble.dart';
 import 'package:yes_no_app_angela_maldonado/presentation/widgets/shared/message_field_box.dart';
+import 'package:yes_no_app_angela_maldonado/domain/entities/message.dart';
+import 'package:yes_no_app_angela_maldonado/presentation/providers/chat_provider.dart';
+
+//backgroundImage: NetworkImage('https://upload.wikimedia.org/wikipedia/commons/a/a0/Taylor_Swift_at_the_2024_Golden_Globes_%281%29.png'),
 
 class ChatScreen extends StatelessWidget {
 
@@ -11,48 +16,50 @@ class ChatScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        //leading es el espacio que hay antes del título
-        //se envuenle en padding para que se haga pequeño
-        leading: const Padding( 
+        leading: const Padding(
           padding: EdgeInsets.all(4.0),
           child: CircleAvatar(
             backgroundImage: NetworkImage('https://upload.wikimedia.org/wikipedia/commons/a/a0/Taylor_Swift_at_the_2024_Golden_Globes_%281%29.png'),
           ),
-        ), //avatar circular
-        title: const Text('Tay <3'),
-        centerTitle: true, //para forzar centrar el texto
+        ),
+        title: const Text("♥️ Tay ♥️"),
+        centerTitle: false,
       ),
-
       body: _ChatView(),
     );
   }
 }
-// El body se trabaja aquí
+
 class _ChatView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea( // Mueve al 'Mundo' a una zona segura
-      child: Padding( // Para que no estén pegados a los bordes
-        padding: const EdgeInsets.symmetric(horizontal: 10),
+    final chatProvider = context.watch<ChatProvider>();
+
+    print('Cantidad de mensajes: ${chatProvider.messageList.length}');
+
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.symmetric( horizontal: 10 ),
         child: Column(
           children: [
-            // Fondo del chat
             Expanded(
-              // ListView dice cuantos elementos tengo y puede cambiar, por eso no es const
               child: ListView.builder(
-                itemCount: 10,
-                // Como va a construir cada elemento
-                itemBuilder: (context, index) {
-                  // Indica cual es el elemento que está rendirizando en este momento
-                  return (index % 2 == 0)
-                  ? const HerMessageBubble()
-                  : const MyMessageBubble();
-  },)
+                controller: chatProvider.chatScrollControler,
+                itemCount: chatProvider.messageList.length,
+                itemBuilder:(context, index) {
+                  final message = chatProvider.messageList[index];
+
+                  return ( message.fromWho == FromWho.him)
+                    ? HerMessageBubble( message: message)
+                    : MyMessageBubble( message: message,);
+              })),
+
+            //Caja de texto de mensajes
+            MessageFieldBox(
+              //onValue: (value) => chatProvider.sendMessage(value),
+              onValue: chatProvider.sendMessage,
             ),
-        
-            // Caja de texto
-            const MessageFieldBox(),
           ],
         ),
       ),

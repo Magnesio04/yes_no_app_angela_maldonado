@@ -1,79 +1,75 @@
 import 'package:flutter/material.dart';
+import 'package:yes_no_app_angela_maldonado/domain/entities/message.dart';
 
 class HerMessageBubble extends StatelessWidget {
-  const HerMessageBubble({super.key});
+
+  final Message message;
+  
+  const HerMessageBubble({
+    super.key, 
+    required this.message
+  });
 
   @override
   Widget build(BuildContext context) {
-    
+
     final colors = Theme.of(context).colorScheme;
 
     return Column(
-
-      // Alinear mis mensajes a la izquierda
       crossAxisAlignment: CrossAxisAlignment.start,
-
       children: [
-        
-        // Fondo de los mensajes
+
         Container(
           decoration: BoxDecoration(
             color: colors.secondary,
-
-          // Hacer redondos los mensajes
-          borderRadius: BorderRadius.circular(20)
-          ),
-
-          // Separación (más bien ajuste de posición) de los mensajes
-          child:const  Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-
-            // Texto de los mensajes
-            child: Text('Hola Angela',
-            style: TextStyle(color: Colors.black),),
+            borderRadius: BorderRadius.circular(20)),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            child: Text(
+              message.text, 
+              style: const TextStyle( color: Colors.black),
+            ),
           ),
         ),
 
-        // Separación de mensajes
         const SizedBox(height: 5),
 
-        _ImageBubble(),
+        _ImageBubble( message.imageURL!),
 
         const SizedBox(height: 10),
-        // Todo: Imagen
       ],
     );
   }
 }
 
-// stles para widgets:
+
 class _ImageBubble extends StatelessWidget {
-  
+
+  final String imageUrl;
+
+  const _ImageBubble(this.imageUrl);
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
 
+    final size= MediaQuery.of(context).size;
 
     return ClipRRect(
-
-      // Agregar borde a la imagen
       borderRadius: BorderRadius.circular(20),
-      child: Image.network('https://media.tenor.com/x6nwT34pHxAAAAAM/taylor-swift.gif',
-        width: size.width * 0.5,
-        height: 150,
-        fit: BoxFit.cover,
-        loadingBuilder: (context, child, loadingProgress) {
-          
-          if (loadingProgress == null) return child;
-          return Container(
-            width: size.width * 0.7,
-            height: 150,
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-            child: const Text('Tay <3 está mandando un mensaje',
-            style: TextStyle(color: Colors.white),),
-          );
-        },
-     ));
-   }
- }
+      child: Image.network(
+          imageUrl,
+          width: size.width * 0.7,
+          height: 150, 
+          fit: BoxFit.cover, 
+          loadingBuilder: (context, child, loadingProgress) {     
+            if ( loadingProgress == null) return child;
+            return Container(
+              width: size.width * 0.7,
+              height: 150,
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+              child: const Text("♥️ Tay ♥️ esta mandando un mensaje"),
+            );
+          },      
+        ));
+  }
+}
