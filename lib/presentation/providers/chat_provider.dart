@@ -15,7 +15,7 @@ class ChatProvider extends ChangeNotifier{
   ];
   
 
-  //Enviar un mensaje
+  // Enviar un mensaje
   Future<void> sendMessage(String text) async {
     if (text.isEmpty) return;
     //El mensaje siempre va a ser mi porque yo lo envio 
@@ -33,13 +33,14 @@ class ChatProvider extends ChangeNotifier{
     moveScrollToBottom();
 }
 
-
+// En Javascript el equivalente a future es promesa
     Future<void> herReply() async{
       final herMessage = await getYesNoAnswer.getAnswer();
       messageList.add(herMessage);
       notifyListeners();
 
       moveScrollToBottom();
+      
     }
 
     //Mover el scroll al ultimo mensaje
