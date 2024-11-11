@@ -1,0 +1,12 @@
+M: modelo  serían los conceptos o datos, de lo que se va a tratar la película
+V: vista es lo que vemos, tipo una película son las escenas
+C: controlador es lo que se controla atrás de vista, sería el director y la producción
+Concepto de MVC: (Patrón de diseño de software)
+
+Instancia: una referencia
+Factory no necesariamente crea una instancia, controla una ya existente
+Diferencia entre constructor y factory: el constructor crea una instancia y factory no
+Key value: estructura del formao jason
+DIO: Para manejar las peticiones de https
+En Javascript el equivalente a future es promesa
+Parse: convertir un  dato a un formato

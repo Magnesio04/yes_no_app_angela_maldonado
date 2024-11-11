@@ -34,7 +34,7 @@ class HerMessageBubble extends StatelessWidget {
 
         const SizedBox(height: 5),
 
-        _ImageBubble( message.imageURL!),
+        _ImageBubble( message.imageURL!), //! es que responda algo. un valor nulo
 
         const SizedBox(height: 10),
       ],
