@@ -18,15 +18,15 @@ class YesNoModel {
         image: json["image"],
     );
 
-    Map<String, dynamic> toJson() => {
-        "answer": answer,
-        "forced": forced,
-        "image": image,
-    };
-
-    Message toMessageEntity() => Message(
-      text: answer == 'yes' ? 'Si' : 'No', 
-      fromWho: FromWho.him,
-      imageURL: image
-    );
+      Message toMessageEntity() => Message(
+        text: answer == 'yes'
+            ? 'si'
+            : answer == 'no'
+                ? 'No'
+                : 'Quizas',
+        fromWho: FromWho.him,
+        //Sera el gif
+        imagenUrl: image, //Esto usara la URL de la imagen
+        timestamp: DateTime.now(), //Agrega la hora actual para el timestamp
+      );
 }

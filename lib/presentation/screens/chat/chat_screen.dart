@@ -16,15 +16,25 @@ class ChatScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: const Padding(
-          padding: EdgeInsets.all(4.0),
-          child: CircleAvatar(
-            backgroundImage: NetworkImage('https://upload.wikimedia.org/wikipedia/commons/a/a0/Taylor_Swift_at_the_2024_Golden_Globes_%281%29.png'),
-          ),
-        ),
-        title: const Text("♥️ Tay ♥️"),
-        centerTitle: false,
+  leading: const Padding(
+    padding: EdgeInsets.all(5.0),
+    child: CircleAvatar(
+      backgroundImage: NetworkImage('https://upload.wikimedia.org/wikipedia/commons/a/a0/Taylor_Swift_at_the_2024_Golden_Globes_%281%29.png'),
+    ),
+  ),
+  title: const Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+       Text('Tay ❤️'),
+       SizedBox(height: 5),
+       Text(
+        'En línea',
+        style: TextStyle(fontSize: 12, color: Colors.green),
       ),
+         ],
+  ),
+  
+),
       body: _ChatView(),
     );
   }
@@ -46,14 +56,18 @@ class _ChatView extends StatelessWidget {
             Expanded(
               child: ListView.builder(
                 controller: chatProvider.chatScrollControler,
-                itemCount: chatProvider.messageList.length,
-                itemBuilder:(context, index) {
-                  final message = chatProvider.messageList[index];
-
-                  return ( message.fromWho == FromWho.him)
-                    ? HerMessageBubble( message: message)
-                    : MyMessageBubble( message: message,);
-              })),
+                    itemCount: chatProvider.messageList.length,
+                    itemBuilder: (context, index) {
+                      // Instancia del message qy¿ue sabra de quien es el mensaje
+                      final message = chatProvider.messageList[index];
+                      return (message.fromWho == FromWho.him)
+                          ? HerMessageBubble(
+                              message: message,
+                            )
+                          : MyMessageBubble(
+                              message: message,
+                            );
+                    })),
 
             //Caja de texto de mensajes
             MessageFieldBox(

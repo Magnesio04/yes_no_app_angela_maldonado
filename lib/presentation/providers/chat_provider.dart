@@ -9,19 +9,24 @@ class ChatProvider extends ChangeNotifier{
   final chatScrollControler = ScrollController();
   final getYesNoAnswer = GetYesNoAnswer();
 
-  List<Message> messageList=[
-    Message(text: "Hola", fromWho: FromWho.me),
-    Message(text: "tqm", fromWho: FromWho.me),
-  ];
+  List<Message> messageList = [
+  Message(text: 'Hola Tay', fromWho: FromWho.me, timestamp: DateTime.now()),
+    Message(
+        text: 'Tqm',
+        fromWho: FromWho.me,
+        timestamp: DateTime.now()), // Asegúrate de añadir esto
+  
+];
   
 
   // Enviar un mensaje
   Future<void> sendMessage(String text) async {
     if (text.isEmpty) return;
     //El mensaje siempre va a ser mi porque yo lo envio 
-    final newMessage = Message(text: text, fromWho: FromWho.me);
-    //Agrega un elemento a lista "messageList"
+   final newMessage= Message(text: text, fromWho: FromWho.me,timestamp: DateTime.now(),);
+    //Agrega un elemento a la lista "messageList"
     messageList.add(newMessage);
+   // print("Cantidad de mensajes en la lista: ${messageList.length}");
 
     if ( text.endsWith('?')){
       herReply();
